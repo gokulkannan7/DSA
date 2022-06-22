@@ -33,3 +33,27 @@ int main() {
     printSubsequences(arr,temp,0);
 	return 0;
 }
+
+// another way to solve the question
+
+vector<vector<int>> helper(vector<int> &v, int ind){
+    if(ind==v.size()) return {{}};
+    
+    vector<vector<int>> res = helper(v,ind+1);
+    vector<vector<int>> ans;
+    for(auto x:res){
+        ans.push_back(x);
+    }
+    
+    for(auto x:res){
+        x.push_back(v[ind]);
+        ans.push_back(x);
+    }
+    return ans;
+}
+
+
+vector<vector<int>> pwset(vector<int>v)
+{
+   return helper(v,0);
+}
